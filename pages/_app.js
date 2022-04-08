@@ -1,5 +1,4 @@
-import AppLayout from 'components/AppLayout'
-
+import AppLayout from 'HOC/AppLayout'
 import 'styles/global.css'
 
 function MyApp ({ Component, pageProps }) {
