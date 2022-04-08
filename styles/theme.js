@@ -1,11 +1,18 @@
-export const colors = {
-  primary: '#2196f3',
-  gray: '#e9ecef',
-  error: '#ff4d6d',
-  dark: '#001219',
-  white: '#fff'
-}
+import { createTheme } from '@mui/material/styles'
 
-export const breakpoints = {
-  mobile: '480px'
-}
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#2196f3'
+    },
+    error: {
+      main: '#ff4d6d'
+    },
+    grey: {
+      main: '#e9ecef'
+    },
+    text: {
+      main: '#001219'
+    }
+  }
+})
