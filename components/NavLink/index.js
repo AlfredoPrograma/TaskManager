@@ -1,16 +1,13 @@
 import Link from 'next/link'
-import styles from './styles'
 
-export const NavLink = ({ href, text }) => {
+export const NavLink = ({ href, children }) => {
   return (
     <>
       <Link href={href}>
         <a>
-          {text}
+          { children }
         </a>
       </Link>
-
-      <style jsx>{styles}</style>
     </>
   )
 }
