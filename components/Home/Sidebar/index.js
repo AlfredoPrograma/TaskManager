@@ -1,6 +1,3 @@
-import { logOut } from 'server/auth'
-import { Button } from 'components/Button'
-import SignOutIcon from 'icons/SignOutIcon'
 import styles from './styles'
 import { NavLink } from 'components/NavLink'
 import HomeIcon from 'icons/Home'
@@ -42,10 +39,6 @@ export const Sidebar = () => {
         </nav>
 
         <footer>
-          <Button onClick={logOut} color='red'>
-            <SignOutIcon />
-            <h2>Sign out</h2>
-          </Button>
         </footer>
       </aside>
 

@@ -1,12 +1,11 @@
 import { useState, useContext } from 'react'
 import { v4 } from 'uuid'
 
-import useTasks, { TASK_TYPES } from 'hooks/useTasks'
+import { TASK_TYPES } from 'hooks/useTasks'
 import { TasksContext } from 'context/Tasks'
 
-import { InputControl } from 'components/Form/Input'
+import { FormInput } from 'components/Form/Input'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Button } from 'components/Button'
 
 import { Spinner } from 'components/Spinner'
 import { TaskItem } from '../Item'
@@ -15,7 +14,6 @@ import styles from './styles'
 
 export const TaskColumn = ({ columnTitle, tasksList, columnTaskType, canCreateTask }) => {
   const { tasks } = useContext(TasksContext)
-  const { addTask, changeTaskType, cleanTask } = useTasks()
 
   const formMethods = useForm()
   const [wannaWrite, setWannaWrite] = useState(false)
@@ -28,17 +26,10 @@ export const TaskColumn = ({ columnTitle, tasksList, columnTaskType, canCreateTa
       type: TASK_TYPES.toDo
     }
 
-    addTask(newTask)
+    console.log(newTask)
 
     formMethods.reset()
     setWannaWrite(false)
-  }
-
-  const handleCreateButton = (evt) => {
-    if (!wannaWrite) {
-      evt.preventDefault()
-      setWannaWrite(true)
-    }
   }
 
   const handleDragLeave = (evt) => setIsDragOver(false)
@@ -54,7 +45,7 @@ export const TaskColumn = ({ columnTitle, tasksList, columnTaskType, canCreateTa
     setIsDragOver(true)
   }
 
-  const handleOnDragEnd = (evt) => cleanTask()
+  const handleOnDragEnd = (evt) => console.log('task clean')
 
   const handleDrop = (evt, newType) => {
     evt.preventDefault()
@@ -64,8 +55,7 @@ export const TaskColumn = ({ columnTitle, tasksList, columnTaskType, canCreateTa
       return
     }
 
-    changeTaskType(newType)
-    cleanTask()
+    console.log(newType)
     setIsDragOver(false)
   }
 
@@ -89,13 +79,10 @@ export const TaskColumn = ({ columnTitle, tasksList, columnTaskType, canCreateTa
               <form onSubmit={formMethods.handleSubmit(onSubmit)}>
                 { wannaWrite &&
                   <FormProvider {...formMethods}>
-                    <InputControl name='newTaskTitle' rules={ { required: 'This field cannot be empty' }} />
+                    <FormInput name='newTaskTitle' rules={ { required: 'This field cannot be empty' }} />
                   </FormProvider>
                 }
 
-                <Button color='primary' onClick={handleCreateButton}>
-                  Create
-                </Button>
               </form>
             }
 

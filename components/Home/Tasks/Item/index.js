@@ -1,18 +1,15 @@
 import { IconButton } from 'components/IconButton'
-import useTasks from 'hooks/useTasks'
 import DeleteIcon from 'icons/DeleteIcon'
 import styles from './styles'
 
 export const TaskItem = ({ id, title, type }) => {
-  const { selectTask, deleteTask } = useTasks()
-
   const handleDragStart = () => {
-    selectTask({ id, title, type })
+    console.log('Task drag')
   }
 
   const handleDelete = evt => {
     evt.preventDefault()
-    deleteTask({ id, title, type })
+    console.log('delete task')
   }
   return (
     <>

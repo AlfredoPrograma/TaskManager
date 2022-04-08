@@ -3,45 +3,22 @@ import { taskReducerActions, tasksReducer } from 'context/Tasks/reducer'
 import { useReducer, useEffect } from 'react'
 import { TaskColumn } from '../Column'
 import { TASK_TYPES } from 'hooks/useTasks'
-import { manageTasksService } from 'server/tasks'
 import styles from './styles'
 
 export const TasksDashboard = ({ userData }) => {
   const [tasks, dispatch] = useReducer(tasksReducer, {})
-  const { getUserTasksList, createNewUserTasksList } = manageTasksService(userData.uid)
 
   useEffect(() => {
-    getUserTasksList()
-      .then(taskListSnapshot => {
-        if (!taskListSnapshot.exists()) {
-          createNewUserTasksList()
-            .then(() => {
-              dispatch({
-                type: taskReducerActions.ON_LOAD,
-                payload: {
-                  actualTask: null,
-                  [TASK_TYPES.toDo]: [],
-                  [TASK_TYPES.inProgress]: [],
-                  [TASK_TYPES.done]: []
-                }
-              })
-            })
-
-          return
-        }
-
-        const { toDo, inProgress, done } = taskListSnapshot.data()
-        dispatch({
-          type: taskReducerActions.ON_LOAD,
-          payload: {
-            actualTask: null,
-            [TASK_TYPES.toDo]: toDo,
-            [TASK_TYPES.inProgress]: inProgress,
-            [TASK_TYPES.done]: done
-          }
-        })
-      })
-  }, [userData])
+    dispatch({
+      type: taskReducerActions.ON_LOAD,
+      payload: {
+        actualTask: null,
+        [TASK_TYPES.toDo]: [],
+        [TASK_TYPES.inProgress]: [],
+        [TASK_TYPES.done]: []
+      }
+    })
+  }, [])
 
   return (
     <>

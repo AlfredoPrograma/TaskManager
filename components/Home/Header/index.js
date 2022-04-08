@@ -4,12 +4,12 @@ import { ImageWrapper } from 'components/ImageWrapper'
 import styles from './styles'
 
 export const HomeHeader = ({ userData }) => {
-  const { displayName, avatar } = userData
+  const { avatar } = userData = {}
 
   return (
     <>
       <header>
-        <span>{displayName}</span>
+        <span>Alfredo Arvelaez</span>
 
         <ImageWrapper>
           <Image src={avatar || '/' } width={28} height={28} />
