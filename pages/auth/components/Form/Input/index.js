@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 
-export function FormInput ({ label, type, placeholder, name, rules, fullWidth, variant, autoFocus }) {
+export function FormInput ({ label, type, placeholder, name, rules, fullWidth, variant, autoFocus, inputAdornment }) {
   const { register, formState: { errors } } = useFormContext()
 
   return (
@@ -16,6 +16,7 @@ export function FormInput ({ label, type, placeholder, name, rules, fullWidth, v
         name={name}
         label={label}
         helperText={ errors[name]?.message }
+        InputProps={{ endAdornment: inputAdornment }}
         FormHelperTextProps={{ style: { margin: 0 } }}
         error={!!errors[name]?.message}
         {...register(name, rules)}

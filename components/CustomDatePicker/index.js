@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { DatePicker } from '@mui/lab'
 import { TextField } from '@mui/material'
 import { useFormContext } from 'react-hook-form'
+import { CalendarMonth } from '@mui/icons-material'
 
 export const CustomDatePicker = ({ name, label, rules }) => {
   const [date, setDate] = useState(new Date())
@@ -20,22 +21,26 @@ export const CustomDatePicker = ({ name, label, rules }) => {
 
   return (
     <DatePicker
+      OpenPickerButtonProps={{ style: { color: '#a4a4a4', margin: '0 auto', padding: '0' } }}
       views={['year', 'month', 'day']}
-      inputFormat='DD-MM-YYYY'
+      inputFormat='YYYY-MM-DD'
       openTo='year'
       label={label}
       value={date}
       onChange={handleChange}
-      renderInput={(params) =>
-        <TextField
-          {...params}
-          FormHelperTextProps={{ style: { margin: 0 } }}
-          value={date}
-          inputProps={{ ...params.inputProps, readOnly: true }}
-          error={!!errors[name]?.message}
-          helperText={errors[name]?.message}
-        />
-      }
+      components={{ OpenPickerIcon: CalendarMonth }}
+      renderInput={(params) => {
+        return (
+          <TextField
+            {...params}
+            FormHelperTextProps={{ style: { margin: 0 } }}
+            value={date}
+            inputProps={{ ...params.inputProps, readOnly: true }}
+            error={!!errors[name]?.message}
+            helperText={errors[name]?.message}
+          />
+        )
+      }}
     />
   )
 }

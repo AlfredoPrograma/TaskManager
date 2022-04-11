@@ -3,7 +3,7 @@ import { useFormContext } from 'react-hook-form'
 import MuiPhoneNumber from 'material-ui-phone-number'
 import validator from 'validator'
 
-export const PhoneNumberInput = ({ countriesAvailable, regionsAvailable, defaultCountry, name, rules }) => {
+export const PhoneNumberInput = ({ countriesAvailable, regionsAvailable, defaultCountry, name, rules, inputAdorment }) => {
   const { register, getValues, setValue, formState: { errors } } = useFormContext()
   const [phoneNumber, setPhoneNumber] = useState('')
   const currentPhoneNumber = getValues(name)
@@ -22,6 +22,7 @@ export const PhoneNumberInput = ({ countriesAvailable, regionsAvailable, default
   return (
     <MuiPhoneNumber
       variant='outlined'
+      InputProps={{ endAdornment: inputAdorment }}
       onlyCountries={countriesAvailable}
       regions={regionsAvailable}
       countryCodeEditable={false}
