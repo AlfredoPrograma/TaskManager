@@ -1,5 +1,6 @@
 import { useFormContext } from 'react-hook-form'
 import { FormInput } from '../../components/Form/Input'
+import { Email, Key } from '@mui/icons-material'
 
 export const AccessDataSection = () => {
   const { getValues } = useFormContext()
@@ -23,6 +24,7 @@ export const AccessDataSection = () => {
             value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g // eslint-disable-line
           }
         }}
+        inputAdornment={<Email color='grey' />}
       />
 
       <FormInput
@@ -32,6 +34,7 @@ export const AccessDataSection = () => {
         label='Password'
         type='password'
         rules={{ required: 'This field is required' }}
+        inputAdornment={<Key color='grey' />}
       />
 
       <FormInput
@@ -41,6 +44,7 @@ export const AccessDataSection = () => {
         label='Repeat password'
         type='password'
         rules={{ required: 'This field is required', validate: passwordsAreSame }}
+        inputAdornment={<Key color='grey' />}
       />
 
     </>
