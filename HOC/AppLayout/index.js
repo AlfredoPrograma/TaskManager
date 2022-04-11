@@ -1,11 +1,15 @@
 import { ThemeProvider } from '@mui/material/styles'
+import LocalizationProvider from '@mui/lab/LocalizationProvider'
+import DateAdapter from '@mui/lab/AdapterMoment'
 import { theme } from 'styles/theme'
 
 const AppLayout = ({ children }) => {
   return (
-    <ThemeProvider theme={theme}>
-      { children }
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={DateAdapter}>
+      <ThemeProvider theme={theme}>
+        { children }
+      </ThemeProvider>
+    </LocalizationProvider>
   )
 }
 
